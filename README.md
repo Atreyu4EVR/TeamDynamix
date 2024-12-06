@@ -146,7 +146,7 @@ If you intend to use this software for profit-generating, revenue-driven, or oth
 
 **Contact for Commercial License:**
 [Ron Vallejo](https://github.com/Atreyu4EVR)
-Email: [ronvallejo@gmail.com](mailto:ronvallejo@gmail.com)
+Email: [vallejor@byui.edu](mailto:vallejor@byui.edu)
 
 ## Reporting Issues
 

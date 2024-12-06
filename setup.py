@@ -26,8 +26,8 @@ setup(
             "tenacity>=8.2.3"
         ]
     },
-    python_requires=">=3.8",
-    description="the unofficial, unsactioned Python library for the TeamDynamix API",
+    python_requires=">=3.10",
+    description="the unofficial, unsactioned Python library for the TeamDynamix Web API",
     author="Ron Vallejo",
-    author_email="ronvallejo@gmail.com",
+    author_email="vallejor@byui.edu",
 )
