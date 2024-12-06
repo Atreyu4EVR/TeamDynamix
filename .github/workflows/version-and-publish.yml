@@ -28,7 +28,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest tests/ --cov=teamdynamix
+          pytest tests/ --cov=teamdynamix -v --tb=short
 
   version:
     needs: test
