@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teamdynamix"
+dynamic = ["version"]
+description = "Unofficial Python SDK for TeamDynamix API integration"
+readme = "README.md"
+authors = [{name = "Ron Vallejo", email = "ronvallejo@gmail.com"}]
+license = {text = "PolyForm Noncommercial License"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.25.0",
+    "python-dotenv>=0.19.0",
+    "openai>=1.0.0",
+]
+
+[tool.semantic_release]
+version_variable = [
+    "src/teamdynamix/__init__.py:__version__",
+    "pyproject.toml:version"
+]
+branch = "main"
+upload_to_pypi = true
+build_command = "python -m build"
