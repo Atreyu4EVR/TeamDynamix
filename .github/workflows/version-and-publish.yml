@@ -69,3 +69,14 @@ jobs:
         run: |
           python -m build
           python -m twine upload --repository testpypi dist/*
+
+  notify:
+    needs: [test, version, publish] # Run after all other jobs
+    runs-on: ubuntu-latest
+    if: always() # Run even if previous jobs fail
+
+    steps:
+      - name: Send NTFY Notification
+        run: |
+          curl -d "Build Status: ${{ job.status }}" \
+            "https://ntfy.sh/Github-Actions"
