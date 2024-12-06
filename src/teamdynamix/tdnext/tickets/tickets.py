@@ -3,7 +3,7 @@ __all__ = ['Ticket', 'TicketManager']
 from typing import Dict, List, Optional, Any, Union
 from uuid import UUID
 from datetime import datetime
-from teamdynamix.authentication.rate_limiter import RateLimiter 
+from teamdynamix.utils.rate_limiter import RateLimiter 
 from dataclasses import dataclass, field, fields
 
 @dataclass(frozen=True)

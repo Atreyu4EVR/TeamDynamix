@@ -6,10 +6,13 @@ from teamdynamix.http_client import TeamDynamix, AuthenticationError, RequestErr
 
 def test_authentication_success(tdx_client):
     with patch('requests.post') as mock_post:
-        # Mock successful authentication response
-        expiration = datetime.now(timezone.utc) + timedelta(hours=1)
-        # Create a simple token string instead of using JWT encoding
-        token = "dummy.jwt.token"
+        # Create a proper JWT token with expiration
+        expiration = int((datetime.now(timezone.utc) + timedelta(hours=1)).timestamp())
+        token = jwt.encode(
+            {"exp": expiration},
+            "secret",  # Dummy secret for testing
+            algorithm="HS256"
+        )
         
         mock_post.return_value.status_code = 200
         mock_post.return_value.text = token

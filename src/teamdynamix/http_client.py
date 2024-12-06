@@ -5,6 +5,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Optional, Dict, Any
 from teamdynamix.tdnext.core import TDNext
 
+
 class AuthenticationError(Exception):
     """Raised when authentication fails"""
     pass
@@ -16,7 +17,6 @@ class RequestError(Exception):
 class TokenError(Exception):
     """Raised when token handling fails"""
     pass
-
 class TeamDynamix:
 
     def __init__(self, base_url: Any, 
@@ -61,6 +61,7 @@ class TeamDynamix:
         self.token_expiration: Optional[datetime] = None
         self._token_refresh_buffer = timedelta(minutes=5)
         self.tdnext = TDNext(self)
+        self.tickets = self.tdnext.tickets
 
     @classmethod
     def login_admin(cls, beid: str, web_services_key: str, base_url: str) -> str:
@@ -137,12 +138,18 @@ class TeamDynamix:
             TokenError: If token cannot be decoded or is missing expiration claim
         """
         try:
-            decoded = jwt.decode(token, options={"verify_signature": False})
+            # Try PyJWT 2.0+ style first
+            try:
+                decoded = jwt.decode(token, options={"verify_signature": False})
+            except TypeError:
+                # Fall back to older PyJWT style
+                decoded = jwt.decode(token, verify=False)
+                
             exp_timestamp = decoded.get("exp")
             if not exp_timestamp:
                 raise TokenError("Token missing expiration claim")
             return datetime.fromtimestamp(exp_timestamp, timezone.utc)
-        except jwt.PyJWTError as e:
+        except Exception as e:
             raise TokenError(f"Failed to decode token: {e}")
 
     def _is_token_expired(self) -> bool:
