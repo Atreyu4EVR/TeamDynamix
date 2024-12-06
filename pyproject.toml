@@ -49,4 +49,3 @@ build_command = "python -m build"
 
 [tool.setuptools.dynamic]
 version = {attr = "teamdynamix.__version__"}
-optional-dependencies = {file = ["setup.py"]}
