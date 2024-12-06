@@ -1,5 +1,4 @@
 from unittest.mock import patch, Mock
-import pytest
 
 def test_create_ticket(tdx_client):
     # Create a proper mock JWT token
