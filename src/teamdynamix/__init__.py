@@ -1,7 +1,7 @@
 """TeamDynamix Python SDK."""
 
+__version__ = "0.1.0"
+
 from .http_client import TeamDynamix
 
-
-__version__ = "0.1.0"
 __all__ = ['TeamDynamix']
