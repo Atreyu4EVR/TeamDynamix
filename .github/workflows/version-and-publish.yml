@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
           pip install -e ".[dev]" -v
-          python -c "import teamdynamix; print(teamdynamix.__file__)"
+          pip install pyjwt
 
       - name: Run tests
         run: |
